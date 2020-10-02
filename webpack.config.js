@@ -1,12 +1,13 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-module.exports = {
-  mode: 'development',
+module.exports = (env = 'development') => ({
+  mode: env.mode,
   entry: './src/index.ts',
   output: {
-    filename: 'main.js',
+    filename: `main${env.mode === 'production' ? '.[hash]' : ''}.js`,
     path: path.resolve(__dirname, 'dist'),
   },
   devServer: {
@@ -16,11 +17,14 @@ module.exports = {
   },
   module: {
     rules: [
-      { test: /\.ts?$/, loader: "ts-loader" },
+      {
+        test: /\.ts?$/,
+        loader: "ts-loader"
+      },
       {
         test: /\.s[ac]ss$/i,
         use: [
-          'style-loader',
+          MiniCssExtractPlugin.loader,
           'css-loader',
           'sass-loader'
         ]
@@ -32,6 +36,9 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+    }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: './src/index.html',
@@ -41,5 +48,5 @@ module.exports = {
         collapseWhitespace: true
       }
     })
-  ],
-};
+  ]
+});
