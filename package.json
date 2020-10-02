@@ -28,7 +28,6 @@
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^4.3.0",
     "eslint": "^7.10.0",
-    "eslint-config-airbnb-typescript": "^11.0.0",
     "eslint-plugin-import": "^2.22.1",
     "html-webpack-plugin": "^4.5.0",
     "husky": "^4.3.0",
