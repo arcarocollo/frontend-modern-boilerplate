@@ -37,7 +37,7 @@ module.exports = (env = 'development') => ({
   plugins: [
     new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
     new MiniCssExtractPlugin({
-      filename: '[name].css',
+      filename: `'[name]${env.mode === 'production' ? '.[hash]' : ''}.css`,
     }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
