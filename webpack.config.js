@@ -10,6 +10,7 @@ module.exports = (env = 'development') => ({
     filename: `main${env.mode === 'production' ? '.[hash]' : ''}.js`,
     path: path.resolve(__dirname, 'dist'),
   },
+  devtool: env.mode === 'production' ? false : 'inline-source-map',
   devServer: {
     contentBase: './dist',
     compress: true,
@@ -37,7 +38,7 @@ module.exports = (env = 'development') => ({
   plugins: [
     new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
     new MiniCssExtractPlugin({
-      filename: `'[name]${env.mode === 'production' ? '.[hash]' : ''}.css`,
+      filename: `[name]${env.mode === 'production' ? '.[hash]' : ''}.css`,
     }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
