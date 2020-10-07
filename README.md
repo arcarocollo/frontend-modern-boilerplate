@@ -1,6 +1,6 @@
 # Frontend Modern Boilerplate #
 
-Frontend Modern Boilerplate is a simple frontend template for building modern web apps or sites.
+Frontend Modern Boilerplate is a simple frontend template for building modern web apps or sites using `Typescript` and `lit-html`.
 
 The project is using the following tools:
 - [node js](https://nodejs.org/it/)
